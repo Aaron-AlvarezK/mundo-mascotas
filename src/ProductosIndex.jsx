@@ -129,22 +129,14 @@ function Productos() {
 
   // Guarda los cambios al editar un carro de compras guardado
   const guardarEdicion = () => {
-<<<<<<< HEAD
-    const guardados = JSON.parse(sessionStorage.getItem("carrosComprasGuardados") || "[]");
-=======
     const guardados = JSON.parse(localStorage.getItem("carrosComprasGuardados") || "[]");
->>>>>>> 3d35522 (golaaaa)
     guardados[editandoIdx] = {
       ...guardados[editandoIdx],
       productos: carroCompras,
       total: carroCompras.reduce((acc, item) => acc + item.precio, 0),
       fecha: new Date().toLocaleString()
     };
-<<<<<<< HEAD
-    sessionStorage.setItem("carrosComprasGuardados", JSON.stringify(guardados));
-=======
     localStorage.setItem("carrosComprasGuardados", JSON.stringify(guardados));
->>>>>>> 3d35522 (golaaaa)
     setCarrosComprasGuardados(guardados);
     alert(`¡Carro de compras #${guardados[editandoIdx].id} editado con éxito!`);
     limpiarCarroCompras();
@@ -251,11 +243,7 @@ function Productos() {
                       // Elimina el carro de compras guardado
                       const nuevos = carrosComprasGuardados.filter((_, i) => i !== idx);
                       setCarrosComprasGuardados(nuevos);
-<<<<<<< HEAD
-                      sessionStorage.setItem("carrosComprasGuardados", JSON.stringify(nuevos));
-=======
                       localStorage.setItem("carrosComprasGuardados", JSON.stringify(nuevos));
->>>>>>> 3d35522 (golaaaa)
                       if (editandoIdx === idx) limpiarCarroCompras();
                     }}
                   >
