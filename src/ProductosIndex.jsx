@@ -16,9 +16,15 @@ const productos = [
   { id: 5, nombre: "Huesos de jugete", precio: 3000, img: huesos}
 ];
 
+<<<<<<< HEAD
 // Genera el siguiente número de carrito basado en sessionStorage
 function generarNumeroCarroCompras() {
   let lastId = parseInt(sessionStorage.getItem("ultimoCarroComprasId") || "0", 10);
+=======
+// Genera el siguiente número de carrito basado en localStorage
+function generarNumeroCarroCompras() {
+  let lastId = parseInt(localStorage.getItem("ultimoCarroComprasId") || "0", 10);
+>>>>>>> 3d35522 (golaaaa)
   return lastId + 1;
 }
 
@@ -34,6 +40,7 @@ function Productos() {
   // Estado para saber si se está editando un carro de compras guardado (índice)
   const [editandoIdx, setEditandoIdx] = useState(null);
 
+<<<<<<< HEAD
   // Al montar el componente, carga el carro de compras y los carros de compras guardados desde sessionStorage
   useEffect(() => {
     const guardado = sessionStorage.getItem("carroCompras");
@@ -41,14 +48,29 @@ function Productos() {
       setCarroCompras(JSON.parse(guardado));
     }
     const guardados = sessionStorage.getItem("carrosComprasGuardados");
+=======
+  // Al montar el componente, carga el carro de compras y los carros de compras guardados desde localStorage
+  useEffect(() => {
+    const guardado = localStorage.getItem("carroCompras");
+    if (guardado) {
+      setCarroCompras(JSON.parse(guardado));
+    }
+    const guardados = localStorage.getItem("carrosComprasGuardados");
+>>>>>>> 3d35522 (golaaaa)
     if (guardados) {
       setCarrosComprasGuardados(JSON.parse(guardados));
     }
   }, []);
 
+<<<<<<< HEAD
   // Guarda el carro de compras actual en sessionStorage cada vez que cambia
   useEffect(() => {
     sessionStorage.setItem("carroCompras", JSON.stringify(carroCompras));
+=======
+  // Guarda el carro de compras actual en localStorage cada vez que cambia
+  useEffect(() => {
+    localStorage.setItem("carroCompras", JSON.stringify(carroCompras));
+>>>>>>> 3d35522 (golaaaa)
   }, [carroCompras]);
 
   // Agrega un producto al carro de compras
@@ -65,7 +87,11 @@ function Productos() {
   // Limpia el carro de compras actual y, si no se está editando, genera un nuevo número de carro de compras
   const limpiarCarroCompras = () => {
     setCarroCompras([]);
+<<<<<<< HEAD
     sessionStorage.removeItem("carroCompras");
+=======
+    localStorage.removeItem("carroCompras");
+>>>>>>> 3d35522 (golaaaa)
     setEditandoIdx(null);
     if (editandoIdx === null) {
       setCarroComprasId(generarNumeroCarroCompras());
@@ -74,8 +100,13 @@ function Productos() {
 
   // Guarda el carro de compras actual en la lista de carros de compras guardados
   const guardarCarroCompras = () => {
+<<<<<<< HEAD
     const guardados = JSON.parse(sessionStorage.getItem("carrosComprasGuardados") || "[]");
     const nuevoId = parseInt(sessionStorage.getItem("ultimoCarroComprasId") || "0", 10) + 1;
+=======
+    const guardados = JSON.parse(localStorage.getItem("carrosComprasGuardados") || "[]");
+    const nuevoId = parseInt(localStorage.getItem("ultimoCarroComprasId") || "0", 10) + 1;
+>>>>>>> 3d35522 (golaaaa)
     const nuevoGuardado = {
       id: nuevoId,
       productos: carroCompras,
@@ -83,8 +114,13 @@ function Productos() {
       fecha: new Date().toLocaleString()
     };
     guardados.push(nuevoGuardado);
+<<<<<<< HEAD
     sessionStorage.setItem("carrosComprasGuardados", JSON.stringify(guardados));
     sessionStorage.setItem("ultimoCarroComprasId", nuevoId);
+=======
+    localStorage.setItem("carrosComprasGuardados", JSON.stringify(guardados));
+    localStorage.setItem("ultimoCarroComprasId", nuevoId);
+>>>>>>> 3d35522 (golaaaa)
     setCarrosComprasGuardados(guardados);
     alert(`¡Carro de compras #${nuevoId} guardado con éxito!`);
     limpiarCarroCompras();
@@ -93,14 +129,22 @@ function Productos() {
 
   // Guarda los cambios al editar un carro de compras guardado
   const guardarEdicion = () => {
+<<<<<<< HEAD
     const guardados = JSON.parse(sessionStorage.getItem("carrosComprasGuardados") || "[]");
+=======
+    const guardados = JSON.parse(localStorage.getItem("carrosComprasGuardados") || "[]");
+>>>>>>> 3d35522 (golaaaa)
     guardados[editandoIdx] = {
       ...guardados[editandoIdx],
       productos: carroCompras,
       total: carroCompras.reduce((acc, item) => acc + item.precio, 0),
       fecha: new Date().toLocaleString()
     };
+<<<<<<< HEAD
     sessionStorage.setItem("carrosComprasGuardados", JSON.stringify(guardados));
+=======
+    localStorage.setItem("carrosComprasGuardados", JSON.stringify(guardados));
+>>>>>>> 3d35522 (golaaaa)
     setCarrosComprasGuardados(guardados);
     alert(`¡Carro de compras #${guardados[editandoIdx].id} editado con éxito!`);
     limpiarCarroCompras();
@@ -207,7 +251,11 @@ function Productos() {
                       // Elimina el carro de compras guardado
                       const nuevos = carrosComprasGuardados.filter((_, i) => i !== idx);
                       setCarrosComprasGuardados(nuevos);
+<<<<<<< HEAD
                       sessionStorage.setItem("carrosComprasGuardados", JSON.stringify(nuevos));
+=======
+                      localStorage.setItem("carrosComprasGuardados", JSON.stringify(nuevos));
+>>>>>>> 3d35522 (golaaaa)
                       if (editandoIdx === idx) limpiarCarroCompras();
                     }}
                   >
